@@ -1,1 +1,1 @@
-# Library Project - JavaScript
+# Project: Library - HTML, CSS and JavaScript
