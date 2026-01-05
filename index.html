@@ -1,16 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project: Library</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div id="container">
-        <div id="library">
-            
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Project: Library</title>
+        <link rel="stylesheet" href="style.css" />
+        <script defer src="script.js"></script>
+    </head>
+    <body>
+        <div id="container">
+            <div>
+                <button class="openDialog">Add To Library</button>
+                <dialog>
+                    <form method="dialog">
+                        <div>
+                            <label for="title">Title</label>
+                            <input
+                                type="text"
+                                placeholder="What's the title?"
+                                id="title"
+                            />
+                        </div>
+                        <div>
+                            <label for="author">Author</label>
+                            <input
+                                type="text"
+                                placeholder="Who's the author?"
+                                id="author"
+                            />
+                        </div>
+                        <div>
+                            <label for="pages">Pages</label>
+                            <input
+                                type="number"
+                                placeholder="How many pages?"
+                                id="pages"
+                            />
+                        </div>
+    
+                        <button type="submit">Add To Library</button>
+                        <button type="reset">Clear</button>
+                    </form>
+                </dialog>
+            </div>
+            <div class="library">
+                
+            </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>
