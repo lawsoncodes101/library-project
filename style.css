@@ -1,6 +1,12 @@
+@font-face {
+    font-family: "monteserrat";
+    src: url("./MontserratAlternates-Regular.ttf");
+}
+
 *,
 *::after,
 *::before {
+    font-family: "monteserrat";
     box-sizing: border-box;
 }
 
@@ -11,4 +17,50 @@ body {
 
 #container {
     min-height: 100vh;
+}
+
+.bookForm {
+    margin: 0;
+    min-height: max(35%, 35vh);
+    border-bottom: 1px solid grey;
+    padding: 1rem;
+
+    h2 {
+        margin: 0 0 1rem 0;
+    }
+    form div {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    input {
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid grey;
+    }
+    button {
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid grey;
+    }
+}
+
+.library {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 20%));
+    grid-auto-rows: calc((60vh + 0.5rem) / 2);
+    
+    .book {
+        padding: 0.5rem;
+        border: 1px solid grey;
+    }
+
+    .book > * {
+        display: block;
+    }
+    .btn-container {
+        display: flex;
+        gap: 1rem;
+    }
 }

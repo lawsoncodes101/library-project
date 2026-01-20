@@ -1,5 +1,3 @@
-const dialog = document.querySelector("dialog");
-const openDialog = document.querySelector(".openDialog");
 const addLibraryBtn = document.querySelector("button[type='submit']");
 const library = document.querySelector(".library");
 const myLibrary = [];
@@ -54,18 +52,19 @@ function displayInHTML(dataId, title, author, pages) {
     const pagesDisplay = document.createElement("span");
     const readBtn = document.createElement("button");
     const removeBtn = document.createElement("button");
-    const buttonContainer = document.createElement("div");
+    const btnContainer = document.createElement("div");
 
     parentDiv.classList.add("book");
     parentDiv.setAttribute("data-id", dataId);
     titleDisplay.textContent = title;
     authorDisplay.textContent = author;
     pagesDisplay.textContent = pages;
+    btnContainer.classList.add("btn-container");
     readBtn.textContent = "Read";
     removeBtn.textContent = "Remove";
 
     readBtn.addEventListener("click", function () {
-        const index = myLibrary.findIndex(x => x.id === dataId);
+        const index = myLibrary.findIndex((x) => x.id === dataId);
         if (index === -1) return;
         myLibrary[index].toggleRead();
         updateLocalStorage();
@@ -75,8 +74,13 @@ function displayInHTML(dataId, title, author, pages) {
         removeFromLibrary(dataId, removeBtn.parentElement);
     });
 
-    buttonContainer.append(readBtn, removeBtn);
-    parentDiv.append(titleDisplay, authorDisplay, pagesDisplay, buttonContainer);
+    btnContainer.append(readBtn, removeBtn);
+    parentDiv.append(
+        titleDisplay,
+        authorDisplay,
+        pagesDisplay,
+        btnContainer
+    );
     library.append(parentDiv);
 }
 
@@ -84,12 +88,16 @@ function removeFromLibrary(dataId, element) {
     let parentElement = element.parentElement;
     parentElement.removeChild(element);
 
-    const index = myLibrary.findIndex(x => x.id === dataId);
+    const index = myLibrary.findIndex((x) => x.id === dataId);
     if (index !== -1) myLibrary.splice(index, 1);
     updateLocalStorage();
 }
 
 addLibraryBtn.addEventListener("click", function () {
+    if ((document.querySelector("#title").value === "")) return false;
+    if ((document.querySelector("#author").value === "")) return false;
+    if ((document.querySelector("#pages").value === "")) return false;
+
     const title = document.querySelector("#title").value;
     const author = document.querySelector("#author").value;
     const pages = Number(document.querySelector("#pages").value);
@@ -97,9 +105,7 @@ addLibraryBtn.addEventListener("click", function () {
     if (pages < 1 && pages > 1000) return false;
 
     addBookToLibrary(title, author, pages);
-    dialog.close();
-});
-
-openDialog.addEventListener("click", function () {
-    dialog.show();
+    document.querySelector("#title").value = "";
+    document.querySelector("#author").value = "";
+    document.querySelector("#pages").value = "";
 });
